@@ -1,29 +1,34 @@
-﻿using Chat;
-using Chat.Server.Configuration;
+﻿using Chat.Server.Configuration;
+using Chat.Server.Services;
 using Chat.Services;
-using Google.Api;
-using Grpc.Core;
-using Grpc.Reflection;
-using Grpc.Reflection.V1Alpha;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-var config = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json", optional: false)
-    .Build();
+await Host.CreateDefaultBuilder(args)
+    .UseConsoleLifetime()
+    .ConfigureLogging(logging =>
+    {
+        logging.AddSimpleConsole(options =>
+        {
+            options.IncludeScopes = false;
+            options.SingleLine = true;
+            options.TimestampFormat = "HH:mm:ss ";
+        });
+    })
+    .ConfigureServices((context, services) => ConfigureServices(context.Configuration, services))
+    .ConfigureAppConfiguration(app =>
+    {
+        app.AddJsonFile("appsettings.json", optional: false);
+    })
+    .RunConsoleAsync();
 
-var appConfig = config.GetRequiredSection(nameof(AppConfig)).Get<AppConfig>();
-
-
-var reflectionServiceImpl = new ReflectionServiceImpl(Chat.ChatService.Descriptor, ServerReflection.Descriptor);
-var server = new Server()
+static void ConfigureServices(IConfiguration configuration, IServiceCollection services)
 {
-    Ports = { new ServerPort(appConfig.Host, appConfig.Port, ServerCredentials.Insecure) },
-    Services = {
-        Chat.ChatService.BindService(new Chat.Services.ChatService()),
-        ServerReflection.BindService(reflectionServiceImpl)
-    }
-};
+    services.AddHostedService<GrpcServerService>();
 
-Console.WriteLine("Starting the server ...");
-server.Start();
-Console.ReadKey();
+    services.AddSingleton<IChannelService, ChannelService>();
+
+    services.Configure<AppConfig>(configuration.GetSection("AppConfig"));
+}

@@ -51,10 +51,10 @@ namespace Chat {
     static readonly grpc::Marshaller<global::Chat.MessageResponse> __Marshaller_Chat_MessageResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Chat.MessageResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Chat.MessageRequest, global::Chat.MessageResponse> __Method_ConnectToChannel = new grpc::Method<global::Chat.MessageRequest, global::Chat.MessageResponse>(
+    static readonly grpc::Method<global::Chat.MessageRequest, global::Chat.MessageResponse> __Method_Connect = new grpc::Method<global::Chat.MessageRequest, global::Chat.MessageResponse>(
         grpc::MethodType.DuplexStreaming,
         __ServiceName,
-        "ConnectToChannel",
+        "Connect",
         __Marshaller_Chat_MessageRequest,
         __Marshaller_Chat_MessageResponse);
 
@@ -69,7 +69,7 @@ namespace Chat {
     public abstract partial class ChatServiceBase
     {
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task ConnectToChannel(grpc::IAsyncStreamReader<global::Chat.MessageRequest> requestStream, grpc::IServerStreamWriter<global::Chat.MessageResponse> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task Connect(grpc::IAsyncStreamReader<global::Chat.MessageRequest> requestStream, grpc::IServerStreamWriter<global::Chat.MessageResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -104,14 +104,14 @@ namespace Chat {
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncDuplexStreamingCall<global::Chat.MessageRequest, global::Chat.MessageResponse> ConnectToChannel(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncDuplexStreamingCall<global::Chat.MessageRequest, global::Chat.MessageResponse> Connect(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ConnectToChannel(new grpc::CallOptions(headers, deadline, cancellationToken));
+        return Connect(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncDuplexStreamingCall<global::Chat.MessageRequest, global::Chat.MessageResponse> ConnectToChannel(grpc::CallOptions options)
+      public virtual grpc::AsyncDuplexStreamingCall<global::Chat.MessageRequest, global::Chat.MessageResponse> Connect(grpc::CallOptions options)
       {
-        return CallInvoker.AsyncDuplexStreamingCall(__Method_ConnectToChannel, null, options);
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_Connect, null, options);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -127,7 +127,7 @@ namespace Chat {
     public static grpc::ServerServiceDefinition BindService(ChatServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_ConnectToChannel, serviceImpl.ConnectToChannel).Build();
+          .AddMethod(__Method_Connect, serviceImpl.Connect).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -137,7 +137,7 @@ namespace Chat {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public static void BindService(grpc::ServiceBinderBase serviceBinder, ChatServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_ConnectToChannel, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Chat.MessageRequest, global::Chat.MessageResponse>(serviceImpl.ConnectToChannel));
+      serviceBinder.AddMethod(__Method_Connect, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Chat.MessageRequest, global::Chat.MessageResponse>(serviceImpl.Connect));
     }
 
   }

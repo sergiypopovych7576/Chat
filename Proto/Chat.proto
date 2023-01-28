@@ -1,5 +1,4 @@
 syntax = "proto3";
-import "google/protobuf/empty.proto";
 
 package Chat;
 
@@ -13,5 +12,5 @@ message MessageResponse {
 }
 
 service ChatService {
-	rpc ConnectToChannel(stream MessageRequest) returns (stream MessageResponse) {}
+	rpc Connect(stream MessageRequest) returns (stream MessageResponse) {}
 }

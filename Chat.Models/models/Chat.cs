@@ -24,13 +24,13 @@ namespace Chat {
     static ChatReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgpDaGF0LnByb3RvEgRDaGF0Ghtnb29nbGUvcHJvdG9idWYvZW1wdHkucHJv",
-            "dG8iHgoOTWVzc2FnZVJlcXVlc3QSDAoEVGV4dBgBIAEoCSIvCg9NZXNzYWdl",
-            "UmVzcG9uc2USDAoEVGV4dBgBIAEoCRIOCgZBdXRob3IYAiABKAkyVAoLQ2hh",
-            "dFNlcnZpY2USRQoQQ29ubmVjdFRvQ2hhbm5lbBIULkNoYXQuTWVzc2FnZVJl",
-            "cXVlc3QaFS5DaGF0Lk1lc3NhZ2VSZXNwb25zZSIAKAEwAWIGcHJvdG8z"));
+            "CgpDaGF0LnByb3RvEgRDaGF0Ih4KDk1lc3NhZ2VSZXF1ZXN0EgwKBFRleHQY",
+            "ASABKAkiLwoPTWVzc2FnZVJlc3BvbnNlEgwKBFRleHQYASABKAkSDgoGQXV0",
+            "aG9yGAIgASgJMksKC0NoYXRTZXJ2aWNlEjwKB0Nvbm5lY3QSFC5DaGF0Lk1l",
+            "c3NhZ2VSZXF1ZXN0GhUuQ2hhdC5NZXNzYWdlUmVzcG9uc2UiACgBMAFiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, },
+          new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Chat.MessageRequest), global::Chat.MessageRequest.Parser, new[]{ "Text" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Chat.MessageResponse), global::Chat.MessageResponse.Parser, new[]{ "Text", "Author" }, null, null, null, null)
