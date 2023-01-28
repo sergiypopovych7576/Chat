@@ -1,0 +1,17 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package Chat;
+
+message MessageRequest {
+	string Text = 1;
+}
+
+message MessageResponse {
+	string Text = 1;
+	string Author = 2;
+}
+
+service ChatService {
+	rpc ConnectToChannel(stream MessageRequest) returns (stream MessageResponse) {}
+}
